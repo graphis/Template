@@ -69,3 +69,33 @@ nested values can be
 template fragments and dictionary are processed and recursed in tandem
 
 Generator does not support function data type: preprocess dictionary instead.
+
+Code usage:
+
+      $contentview = Generator::view(array($contenttemplatefile),$contentdictionary);
+      $pageview = Generator::view(array($pagetemplatefile),$pagedictionary);
+      $pageview->content = $contentview;
+      $this->response->body($pageview);
+
+Markup usage example:
+
+-------
+
+<p>Hello {{firstname}}{{^is_marketing_letter}},{{/^is_marketing_letter}} {{?is_marketing_letter}}{{lastname}},{{/?is_marketing_letter}}</p>
+
+{{#?recordset}}
+   <p>Here is a list of your recent purchases:</p>
+
+{{#recordset}}
+{{>purchase_record_template}}
+{{/#recordset}}
+
+   <p>Total Purchases: {{totalpurchases}}</p>
+
+{{/#?recordset}}
+
+   <p>We have some exciting news ...</p>
+
+
+
+
