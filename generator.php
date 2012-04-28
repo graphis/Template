@@ -493,12 +493,8 @@ class Generator
 		$index = $preg_groups['unescaped_globalvar_index'];
 		$term = isset($this->_starting_dictionary[$index])? $this->_starting_dictionary[$index]: '';
 		// defensive filter
-		if (is_array($term)) {
-			$term = 
-				'Technical error - Wrong datatype for variable {{'. $index . '}}: ' . 
-				var_export($term, TRUE);
-			return htmlspecialchars($term);
-		}
+		if (is_array($term))
+			return htmlspecialchars(var_export($term, TRUE));
 		return $term;
 	}
 	# {{*...}}
@@ -507,11 +503,8 @@ class Generator
 		$index = $preg_groups['globalvar_index'];
 		$term = isset($this->_starting_dictionary[$index])? $this->_starting_dictionary[$index]: '';
 		// defensive filter
-		if (is_array($term)) {
-			$term = 
-				'Technical error - Wrong datatype for variable {{'. $index . '}}: ' . 
-				var_export($term, TRUE);
-		}
+		if (is_array($term))
+			return htmlspecialchars(var_export($term, TRUE));
 		return htmlspecialchars($term);
 	}
 	# {{&...}}
@@ -522,12 +515,8 @@ class Generator
 		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		$term = isset($dictionary[$index])? $dictionary[$index]: '';
 		// defensive filter
-		if (is_array($term)) {
-			$term = 
-				'Technical error - Wrong datatype for variable {{'. $index . '}}: ' . 
-				var_export($term, TRUE);
-			return htmlspecialchars($term);
-		}
+		if (is_array($term))
+			return htmlspecialchars(var_export($term, TRUE));
 		return $term;
 	}
 	# {{...}}
@@ -538,11 +527,8 @@ class Generator
 		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		$term = isset($dictionary[$index])? $dictionary[$index]: '';
 		// defensive filter
-		if (is_array($term)) {
-			$term = 
-				'Technical error - Wrong datatype for variable {{'. $index . '}}: ' . 
-				var_export($term, TRUE);
-		}
+		if (is_array($term))
+			return htmlspecialchars(var_export($term, TRUE));
 		return htmlspecialchars($term);
 	}
 }
