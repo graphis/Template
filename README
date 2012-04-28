@@ -84,17 +84,14 @@ Markup usage example:
 <p>Hello {{firstname}}{{^is_marketing_letter}},{{/^is_marketing_letter}} {{?is_marketing_letter}}{{lastname}},{{/?is_marketing_letter}}</p>
 
 {{#?recordset}}
-   <p>Here is a list of your recent purchases:</p>
-
-{{#recordset}}
-{{>purchase_record_template}}
-{{/#recordset}}
-
-   <p>Total Purchases: {{totalpurchases}}</p>
-
+  <p>Here is a list of your recent purchases:</p>
+  {{#recordset}}
+    {{>purchase_record_template}}
+  {{/#recordset}}
+  <p>Total Purchases: {{totalpurchases}}</p>
 {{/#?recordset}}
 
-   <p>We have some exciting news ...</p>
+<p>We have some exciting news ...</p>
 
 -------
 
