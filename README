@@ -96,6 +96,10 @@ Markup usage example:
 
    <p>We have some exciting news ...</p>
 
+-------
 
+Requirements:
+
+written for the Kohana framework, but there is only one dependency (Kohana::find_file(...)) which can easily be replaced by a class extension.
 
 
