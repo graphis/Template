@@ -118,20 +118,18 @@ class Generator
 	public static function get_template($filename,$directory = 'views',$extension = 'html')
 	{
 		$filedata = (array) $filename;
-		if (count(($filedata) == 1) and isset($filedata[0]))
+		if (count(($filedata) == 1) and isset($filedata[0])) {
 			$file = self::find_file($directory,$filedata[0],$extension);
-		else {
+		} else {
 			$filename = isset($filedata['filename'])?$filedata['filename']:NULL;
 			$ext = isset($filedata['ext'])?$filedata['ext']:$extension;
 			if ($filename and $ext)
 				$file = self::find_file($directory,$filename,$ext);
-			else
-				return '';
+			else return '';
 		}
 		if ($file)
 			return file_get_contents($file);
-		else
-			return '';
+		else return '';
 	}
 	// isolates Kohana find_file dependency - can over-ride with subclass
 	public static function find_file($directory,$filename,$file_extension = NULL)
@@ -180,8 +178,7 @@ class Generator
 	{
 		if (isset($this->_starting_dictionary[$index]))
 			return $this->_starting_dictionary[$index];
-		else
-			return NULL;
+		else return NULL;
 	}
 	# ========================================================================= #
 	# -------------------------[ processing support ]---------------------------#
@@ -313,8 +310,7 @@ class Generator
 		}
 		if ($processing_method)
 			return $this->$processing_method($preg_groups);
-		else
-			return ''; // empty block
+		else return ''; // empty block
 	}
 	protected function _get_template($filedata)
 	{
@@ -338,10 +334,8 @@ class Generator
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
 				return $this->_expand($preg_groups['globalassertion_block'],$this->_dictionary);
-			}
-		} else {
-			return '';
-		}
+			} else return '';
+		} else return '';
 	}
 	# {{?...}} ... {{/?...}}
 	// acts like IF
@@ -354,10 +348,8 @@ class Generator
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
 				return $this->_expand($preg_groups['assertion_block'],$this->_dictionary);
-			}
-		} else {
-			return '';
-		}
+			} else return '';
+		} else return '';
 	}
 	# {{#?*...}} ... {{/#?*...}}
 	// acts like IF NOT EMPTY
@@ -369,10 +361,8 @@ class Generator
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
 				return $this->_expand($preg_groups['globalsectionassertion_block'],$this->_dictionary);
-			}
-		} else {
-			return '';
-		}
+			} else return '';
+		} else return '';
 	}
 	# {{#?...}} ... {{/#?...}}
 	// acts like IF NOT EMPTY
@@ -385,10 +375,8 @@ class Generator
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
 				return $this->_expand($preg_groups['sectionassertion_block'],$this->_dictionary);
-			}
-		} else {
-			return '';
-		}
+			} else return '';
+		} else return '';
 	}
 	# {{#*...}} ... {{/#*...}}
 	protected function _process_globalsection($preg_groups)
@@ -435,9 +423,7 @@ class Generator
 			} else { // simple variable acts as assertion
 				return $this->_expand($template,$this->_dictionary);
 			}
-		} else {
-			return '';
-		}
+		} else return '';
 	}
 	# {{^*...}} ... {{/^*...}}
 	// acts like IF NOT when EMPTY or FALSE (and not "0")
@@ -451,9 +437,7 @@ class Generator
 		}
 		if (empty($term) and !is_numeric($term)) { // not '0'
 			return $this->_expand($preg_groups['globalinverted_section_block'],$this->_dictionary);
-		} else {
-			return '';
-		}
+		} else return '';
 	}
 	# {{^...}} ... {{/^...}}
 	// acts like IF NOT when EMPTY or FALSE (and not "0")
@@ -469,9 +453,7 @@ class Generator
 		}
 		if (empty($term) and !is_numeric($term)) { // not '0'
 			return $this->_expand($preg_groups['inverted_section_block'],$this->_dictionary); // $dictionary);
-		} else {
-			return '';
-		}
+		} else return '';
 	}
 	# {{>...}}
 	// uses the index as filename unless dictionary entry found
@@ -480,19 +462,19 @@ class Generator
 		$index = $preg_groups['partial_index'];
 		$dictionary = $this->_dictionary;
 		is_object($dictionary) and ($dictionary = (array) $dictionary);
-		if (isset($dictionary[$index])) // dictionary entry, can be template of array(templatefilename)
+		if (isset($dictionary[$index])) {// dictionary entry, can be template of array(templatefilename)
 			// allow unique templates for each dictionary, ie for each list iteration
 			// but all references to $index must be in dictionary
 			$template = $dictionary[$index]; 
-		else {
+		} else {
 			$template = array($index);
 		}
 		if (is_array($template)) {// requires isset($template[0])
 			$diskindex = $template[0];
 			$cache = $this->_template_cache;
-			if (isset($cache[$diskindex]))
+			if (isset($cache[$diskindex])) {
 				$template = $cache[$diskindex];
-			else {
+			} else {
 				$template = $this->_get_template($template);
 				if (empty($template)) return '';
 				$this->_template_cache[$diskindex] = $template; // anticipate more references; avoid file seeks
