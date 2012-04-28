@@ -64,7 +64,7 @@ root must be associative array
 nested values can be 
 	basic datatypes, or 
 	simple objects (interpreted as nested namespaces, converted to associative arrays), or
-	list arrays, which are iterated with parallel section template fragment
+	list arrays, which are iterated with concurrent section template fragment
 
 template fragments and dictionary are processed and recursed in tandem
 
