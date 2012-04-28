@@ -34,7 +34,7 @@ reserved:
 Markup:
 Notes:
 * = global = reference to dictionary root associative array
-alternate, simpler, element closing tags are DEPRECATED, but available for MUSTACHE compatibility
+alternate, simpler, element closing tags (in parenthesis) are DEPRECATED, but available for MUSTACHE compatibility
 
 assertions:	
 {{?*...}} ... {{/?*...}} (or {{/...}}) global var assertion: exists, and true or not empty or numeric (0)
