@@ -12,8 +12,11 @@ indexes must start with alpha character and be followed by word characters (lett
 sections can be thought of as nested namespaces
 
 delimiters:
+
 {{...}} these cannot be changed (but it wouldn't be hard to extend the class to allow alternate delimiters)
+
 symbols:
+
 section qualifier:
 #
 alternate qualifier:
