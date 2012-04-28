@@ -33,7 +33,9 @@ reserved:
 
 Markup:
 Notes:
+
 * = global = reference to dictionary root associative array
+
 alternate, simpler, element closing tags (in parenthesis) are DEPRECATED, but available for MUSTACHE compatibility
 
 assertions:	
