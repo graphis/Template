@@ -90,9 +90,9 @@ Markup usage example:
 {{#?recordset}}
   <p>Here is a list of your recent purchases:</p>
   <table>
-  {{#recordset}}
-    {{>purchase_record_template}}
-  {{/#recordset}}
+    {{#recordset}}
+      {{>purchase_record_template}}
+    {{/#recordset}}
   </table>
   <p>Total Purchases: {{totalpurchases}}</p>
 {{/#?recordset}}
