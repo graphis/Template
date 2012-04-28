@@ -29,37 +29,42 @@ reserved:
 + = recursion (reserved - not implemented)
 
 Markup:
-	Notes:
-		* = global = reference to dictionary root associative array
-		alternate, simpler, element closing tags are DEPRECATED, but available for MUSTACHE compatibility
+Notes:
+* = global = reference to dictionary root associative array
+alternate, simpler, element closing tags are DEPRECATED, but available for MUSTACHE compatibility
+
 assertions:	
-	{{?*...}} ... {{/?*...}} or {{/...}}		global var assertion: exists, and true or not empty or numeric (0)
-	{{?...}} ... {{/?...}} or {{/...}} 			var assertion: exists, and true or not empty or numeric (0)
-	{{#?*...}} ... {{/#?*...}} or {{/?...}}		global section assertion: exists, and true or not empty or numeric (0)
-	{{#?...}} ... {{/#?...}} or {{/?...}}		section assertion: exists, and true or not empty or numeric (0)
+{{?*...}} ... {{/?*...}} or {{/...}} global var assertion: exists, and true or not empty or numeric (0)
+{{?...}} ... {{/?...}} or {{/...}} var assertion: exists, and true or not empty or numeric (0)
+{{#?*...}} ... {{/#?*...}} or {{/?...}} global section assertion: exists, and true or not empty or numeric (0)
+{{#?...}} ... {{/#?...}} or {{/?...}} section assertion: exists, and true or not empty or numeric (0)
+
 namespaces (nested sections):
-	{{#*...}} ... {{/#*...}} or {{/...}}		global section
-	{{#...}} ... {{/#...}} or {{/...}}			section: own scope of object or array, or variable assertion
+{{#*...}} ... {{/#*...}} or {{/...}} global section
+{{#...}} ... {{/#...}} or {{/...}} section: own scope of object or array, or variable assertion
+
 inversions:
-	{{^*...}} ... {{/^*...}} or {{/...}}		global inverted section or variable: doesn't exist, or false, or empty and not numeric (0)
-	{{^...}} ... {{/^...}} or {{/...}}			inverted section or variable: doesn't exist, or false, or empty and not numeric (0)
+{{^*...}} ... {{/^*...}} or {{/...}} global inverted section or variable: doesn't exist, or false, or empty and not numeric (0)
+{{^...}} ... {{/^...}} or {{/...}} inverted section or variable: doesn't exist, or false, or empty and not numeric (0)
+
 specialized:
-	{{>...}}									partial template: index taken as file name unless dictionary entry is set
-	{{!...}}									comment: thrown away
+{{>...}} partial template: index taken as file name unless dictionary entry is set
+{{!...}} comment: thrown away
+
 variables:
-	{{&*...}}									unescaped global var: no htmlspecialchar filter
-	{{*...}}									global var: htmlspecialchar filter
-	{{&...}}									unescaped var: no htmlspecialchar filter
-	{{...}}										var: htmlspecialchar filter
+{{&*...}} unescaped global var: no htmlspecialchar filter
+{{*...}} global var: htmlspecialchar filter
+{{&...}} unescaped var: no htmlspecialchar filter
+{{...}} var: htmlspecialchar filter
 	
 template is combined with dictionary through markup.
 
 dictionary: 
-	root must be associative array
-	nested values can be 
-		basic datatypes, or 
-		simple objects (interpreted as nested namespaces, converted to associative arrays)
-		list arrays, which are iterated with parallel section template fragment
+root must be associative array
+nested values can be 
+	basic datatypes, or 
+	simple objects (interpreted as nested namespaces, converted to associative arrays)
+	list arrays, which are iterated with parallel section template fragment
 
 template fragments and dictionary are processed and recursed in tandem
 
