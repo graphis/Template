@@ -100,6 +100,6 @@ Markup usage example:
 
 Requirements:
 
-written for the Kohana framework, but there is only one dependency (Kohana::find_file(...)) which can easily be replaced by a class extension.
+written for use with the Kohana framework, but there is only one dependency (Kohana::find_file(...)) which can easily be replaced by a class extension.
 
 
