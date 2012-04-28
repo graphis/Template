@@ -37,18 +37,18 @@ Notes:
 alternate, simpler, element closing tags are DEPRECATED, but available for MUSTACHE compatibility
 
 assertions:	
-{{?*...}} ... {{/?*...}} or {{/...}} global var assertion: exists, and true or not empty or numeric (0)
-{{?...}} ... {{/?...}} or {{/...}} var assertion: exists, and true or not empty or numeric (0)
-{{#?*...}} ... {{/#?*...}} or {{/?...}} global section assertion: exists, and true or not empty or numeric (0)
-{{#?...}} ... {{/#?...}} or {{/?...}} section assertion: exists, and true or not empty or numeric (0)
+{{?*...}} ... {{/?*...}} (or {{/...}}) global var assertion: exists, and true or not empty or numeric (0)
+{{?...}} ... {{/?...}} (or {{/...}}) var assertion: exists, and true or not empty or numeric (0)
+{{#?*...}} ... {{/#?*...}} (or {{/?...}}) global section assertion: exists, and true or not empty or numeric (0)
+{{#?...}} ... {{/#?...}} (or {{/?...}}) section assertion: exists, and true or not empty or numeric (0)
 
 namespaces (nested sections):
-{{#*...}} ... {{/#*...}} or {{/...}} global section
-{{#...}} ... {{/#...}} or {{/...}} section: own scope of object or array, or variable assertion
+{{#*...}} ... {{/#*...}} (or {{/...}}) global section
+{{#...}} ... {{/#...}} (or {{/...}}) section: own scope of object or array, or variable assertion
 
 inversions:
-{{^*...}} ... {{/^*...}} or {{/...}} global inverted section or variable: doesn't exist, or false, or empty and not numeric (0)
-{{^...}} ... {{/^...}} or {{/...}} inverted section or variable: doesn't exist, or false, or empty and not numeric (0)
+{{^*...}} ... {{/^*...}} (or {{/...}}) global inverted section or variable: doesn't exist, or false, or empty and not numeric (0)
+{{^...}} ... {{/^...}} (or {{/...}}) inverted section or variable: doesn't exist, or false, or empty and not numeric (0)
 
 specialized:
 {{>...}} partial template: index taken as file name unless dictionary entry is set
