@@ -39,7 +39,7 @@ specialized:
 > = partial (template fragment)
 ! = comment (thrown away)
 reserved:
-+ = recursion (reserved - not implemented)
++ = subsection (template recursion - reserved - not implemented)
 
 Markup:
 	Notes:
@@ -159,7 +159,9 @@ class Generator
 	// combine dictionary values with template
 	public function expand()
 	{
-		return $this->_expand($this->_starting_template,$this->_starting_dictionary);
+		if ($this->_starting_template and $this->_starting_dictionary)
+			return $this->_expand($this->_starting_template,$this->_starting_dictionary);
+		return '';
 	}
 	// alias of expand
 	public function render()
@@ -281,7 +283,7 @@ class Generator
 	}
 	// the (recursive) entry point
 	// must not generate exception - __toString can't handle exception.
-	protected function _expand($template, $dictionary) // indirectly recursive
+	protected function _expand($template, Array $dictionary) // indirectly recursive
 	{
 		// stack dictionary
 		array_push($this->_dictionaries,$dictionary);
@@ -343,7 +345,6 @@ class Generator
 	{
 		$index = $preg_groups['assertion_index'];
 		$dictionary = $this->_dictionary;
-		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		if (isset($dictionary[$index])) {
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
@@ -372,7 +373,6 @@ class Generator
 	{
 		$index = $preg_groups['sectionassertion_index'];
 		$dictionary = $this->_dictionary;
-		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		if (isset($dictionary[$index])) {
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
@@ -395,7 +395,6 @@ class Generator
 	{
 		$index = $preg_groups['section_index'];
 		$dictionary = $this->_dictionary;
-		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
 		$template = $preg_groups['section_block'];
 		$retval = $this->_process_section_data($term,$template);
@@ -413,6 +412,7 @@ class Generator
 			if (is_array($term)) { // list; records; iterate
 				$retval = '';
 				foreach ($term as $item) {
+					is_object($item) and ($item = (array) $item);
 					$retval .= $this->_expand($template,$item);
 				}
 				return $retval;
@@ -446,7 +446,6 @@ class Generator
 	{
 		$index = $preg_groups['inverted_section_index'];
 		$dictionary = $this->_dictionary;
-		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		if (!isset($dictionary[$index])) {
 			$term = NULL;
 		} else {
@@ -463,7 +462,6 @@ class Generator
 	{
 		$index = $preg_groups['partial_index'];
 		$dictionary = $this->_dictionary;
-		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		if (isset($dictionary[$index])) {// dictionary entry, can be template of array(templatefilename)
 			// allow unique templates for each dictionary, ie for each list iteration
 			// but all references to $index must be in dictionary
@@ -514,7 +512,6 @@ class Generator
 	{
 		$index = $preg_groups['unescaped_variable_index'];
 		$dictionary = $this->_dictionary;
-		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		$term = isset($dictionary[$index])? $dictionary[$index]: '';
 		// defensive filter
 		if (is_array($term))
@@ -526,7 +523,6 @@ class Generator
 	{
 		$index = $preg_groups['variable_index'];
 		$dictionary = $this->_dictionary;
-		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		$term = isset($dictionary[$index])? $dictionary[$index]: '';
 		// defensive filter
 		if (is_array($term))
