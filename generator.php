@@ -180,6 +180,7 @@ class Generator
 			return $this->_starting_dictionary[$index];
 		else return NULL;
 	}
+	
 	# ========================================================================= #
 	# -------------------------[ processing support ]---------------------------#
 	# ========================================================================= #
@@ -291,10 +292,8 @@ class Generator
 		$retval = preg_replace_callback($this->_re,array($this,'_expand_templatepoint'),$template);
 		// restore context
 		array_pop($this->_dictionaries);
-		if (!empty($this->_dictionaries))
-			$this->_dictionary = end($this->_dictionaries);
-		else
-			$this->_dictionary = NULL;
+		$this->_dictionary = end($this->_dictionaries); // may be FALSE when completed
+		// return merged template
 		return $retval;
 	}
 	// preg callback
@@ -320,6 +319,7 @@ class Generator
 	{
 		return self::get_dictionary($filedata);
 	}
+	
 	# ========================================================================= #
 	# -------------------------[ markup processing ]----------------------------#
 	# ========================================================================= #
