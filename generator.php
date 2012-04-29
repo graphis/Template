@@ -85,7 +85,6 @@ class Generator
 	protected $_starting_template;
 	protected $_starting_dictionary;
 	protected $_dictionaries = array();
-	protected $_section_template = array(); // for subsection recursions.
 	protected $_dictionary; // current template context
 	protected $_template_cache = array(); // for partials
 
@@ -388,9 +387,7 @@ class Generator
 		$index = $preg_groups['globalsection_index'];
 		$term = isset($this->_starting_dictionary[$index])? $this->_starting_dictionary[$index]:NULL;
 		$template = $preg_groups['globalsection_block'];
-		array_push($this->_section_template,$template);
 		$retval = $this->_process_section_data($term,$template);
-		array_pop($this->_section_template); 
 		return $retval;
 	}
 	# {{#...}} ... {{/#...}}
@@ -401,9 +398,7 @@ class Generator
 		is_object($dictionary) and ($dictionary = (array) $dictionary);
 		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
 		$template = $preg_groups['section_block'];
-		array_push($this->_section_template,$template);
 		$retval = $this->_process_section_data($term,$template);
-		array_pop($this->_section_template); 
 		return $retval;
 	}
 	// _process_section_data supports both process_global_section and process_section
