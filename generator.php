@@ -78,7 +78,7 @@ template fragments and dictionary are processed and recursed in tandem
 
 Template does not support function data type: preprocess dictionary instead.
 */
-class Template
+class Generator
 {
 	protected $_re;
 	protected $_starting_template;
