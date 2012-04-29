@@ -331,12 +331,10 @@ class Generator
 	{
 		$index = $preg_groups['globalassertion_index'];
 		$dictionary = $this->_starting_dictionary;
-		if (isset($dictionary[$index])) {
-			$term = $dictionary[$index];
-			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
-				return $this->_expand($preg_groups['globalassertion_block'],$this->_dictionary);
-			}
-		} 
+		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
+		if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
+			return $this->_expand($preg_groups['globalassertion_block'],$this->_dictionary);
+		}
 		return '';
 	}
 	# {{?...}} ... {{/?...}}
@@ -345,11 +343,9 @@ class Generator
 	{
 		$index = $preg_groups['assertion_index'];
 		$dictionary = $this->_dictionary;
-		if (isset($dictionary[$index])) {
-			$term = $dictionary[$index];
-			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
-				return $this->_expand($preg_groups['assertion_block'],$this->_dictionary);
-			}
+		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
+		if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
+			return $this->_expand($preg_groups['assertion_block'],$this->_dictionary);
 		}
 		return '';
 	}
@@ -359,12 +355,10 @@ class Generator
 	{
 		$index = $preg_groups['globalsectionassertion_index'];
 		$dictionary = $this->_starting_dictionary;
-		if (isset($dictionary[$index])) { 
-			$term = $dictionary[$index];
-			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
-				return $this->_expand($preg_groups['globalsectionassertion_block'],$this->_dictionary);
-			}
-		} 
+		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
+		if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
+			return $this->_expand($preg_groups['globalsectionassertion_block'],$this->_dictionary);
+		}
 		return '';
 	}
 	# {{#?...}} ... {{/#?...}}
@@ -373,11 +367,9 @@ class Generator
 	{
 		$index = $preg_groups['sectionassertion_index'];
 		$dictionary = $this->_dictionary;
-		if (isset($dictionary[$index])) {
-			$term = $dictionary[$index];
-			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
-				return $this->_expand($preg_groups['sectionassertion_block'],$this->_dictionary);
-			}
+		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
+		if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
+			return $this->_expand($preg_groups['sectionassertion_block'],$this->_dictionary);
 		}
 		return '';
 	}
@@ -432,11 +424,7 @@ class Generator
 	{
 		$index = $preg_groups['globalinverted_section_index'];
 		$dictionary = $this->_starting_dictionary;
-		if (!isset($dictionary[$index])) {
-			$term = NULL;
-		} else {
-			$term = $dictionary[$index];
-		}
+		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
 		if (empty($term) and !is_numeric($term)) { // not '0'
 			return $this->_expand($preg_groups['globalinverted_section_block'],$this->_dictionary);
 		} 
@@ -448,11 +436,7 @@ class Generator
 	{
 		$index = $preg_groups['inverted_section_index'];
 		$dictionary = $this->_dictionary;
-		if (!isset($dictionary[$index])) {
-			$term = NULL;
-		} else {
-			$term = $dictionary[$index];
-		}
+		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
 		if (empty($term) and !is_numeric($term)) { // not '0'
 			return $this->_expand($preg_groups['inverted_section_block'],$this->_dictionary); // $dictionary);
 		} 
