@@ -334,8 +334,9 @@ class Generator
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
 				return $this->_expand($preg_groups['globalassertion_block'],$this->_dictionary);
-			} else return '';
-		} else return '';
+			}
+		} 
+		return '';
 	}
 	# {{?...}} ... {{/?...}}
 	// acts like IF
@@ -348,8 +349,9 @@ class Generator
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
 				return $this->_expand($preg_groups['assertion_block'],$this->_dictionary);
-			} else return '';
-		} else return '';
+			}
+		}
+		return '';
 	}
 	# {{#?*...}} ... {{/#?*...}}
 	// acts like IF NOT EMPTY
@@ -361,8 +363,9 @@ class Generator
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
 				return $this->_expand($preg_groups['globalsectionassertion_block'],$this->_dictionary);
-			} else return '';
-		} else return '';
+			}
+		} 
+		return '';
 	}
 	# {{#?...}} ... {{/#?...}}
 	// acts like IF NOT EMPTY
@@ -375,8 +378,9 @@ class Generator
 			$term = $dictionary[$index];
 			if (!empty($term) or is_numeric($term)) { // is_numeric for '0'
 				return $this->_expand($preg_groups['sectionassertion_block'],$this->_dictionary);
-			} else return '';
-		} else return '';
+			}
+		}
+		return '';
 	}
 	# {{#*...}} ... {{/#*...}}
 	protected function _process_globalsection($preg_groups)
@@ -423,7 +427,8 @@ class Generator
 			} else { // simple variable acts as assertion
 				return $this->_expand($template,$this->_dictionary);
 			}
-		} else return '';
+		} 
+		return '';
 	}
 	# {{^*...}} ... {{/^*...}}
 	// acts like IF NOT when EMPTY or FALSE (and not "0")
@@ -437,7 +442,8 @@ class Generator
 		}
 		if (empty($term) and !is_numeric($term)) { // not '0'
 			return $this->_expand($preg_groups['globalinverted_section_block'],$this->_dictionary);
-		} else return '';
+		} 
+		return '';
 	}
 	# {{^...}} ... {{/^...}}
 	// acts like IF NOT when EMPTY or FALSE (and not "0")
@@ -453,7 +459,8 @@ class Generator
 		}
 		if (empty($term) and !is_numeric($term)) { // not '0'
 			return $this->_expand($preg_groups['inverted_section_block'],$this->_dictionary); // $dictionary);
-		} else return '';
+		} 
+		return '';
 	}
 	# {{>...}}
 	// uses the index as filename unless dictionary entry found
