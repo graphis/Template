@@ -76,17 +76,16 @@ dictionary:
 
 template fragments and dictionary are processed and recursed in tandem
 
-Generator does not support function data type: preprocess dictionary instead.
+Template does not support function data type: preprocess dictionary instead.
 */
-class Generator
+class Template
 {
-	protected $_rules;
 	protected $_re;
 	protected $_starting_template;
 	protected $_starting_dictionary;
 	protected $_dictionaries = array();
 	protected $_dictionary; // current template context
-	protected $_template_cache = array(); // for partials
+	protected $_template_cache; // for partials
 
 	# ========================================================================= #
 	# -------------------------[ static functions ]-----------------------------#
@@ -151,7 +150,7 @@ class Generator
 		
 		$this->_set_rules();
 	}
-	// this allows a Generator object to be assigned to another template's variable
+	// this allows a Template object to be assigned to another template's variable
 	public function __toString()
 	{
 		return $this->render();
@@ -283,7 +282,7 @@ class Generator
 	}
 	// the (recursive) entry point
 	// must not generate exception - __toString can't handle exception.
-	protected function _expand($template, Array $dictionary) // indirectly recursive
+	protected function _expand($template, Array $dictionary)
 	{
 		// stack dictionary
 		array_push($this->_dictionaries,$dictionary);
