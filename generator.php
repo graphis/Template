@@ -385,7 +385,8 @@ class Generator
 	protected function _process_globalsection($preg_groups)
 	{
 		$index = $preg_groups['globalsection_index'];
-		$term = isset($this->_starting_dictionary[$index])? $this->_starting_dictionary[$index]:NULL;
+		$dictionary = $this->_starting_dictionary;
+		$term = isset($dictionary[$index])? $dictionary[$index]:NULL;
 		$template = $preg_groups['globalsection_block'];
 		$retval = $this->_process_section_data($term,$template);
 		return $retval;
@@ -430,10 +431,11 @@ class Generator
 	protected function _process_globalinverted_section($preg_groups)
 	{
 		$index = $preg_groups['globalinverted_section_index'];
-		if (!isset($this->_starting_dictionary[$index])) {
+		$dictionary = $this->_starting_dictionary;
+		if (!isset($dictionary[$index])) {
 			$term = NULL;
 		} else {
-			$term = $this->_starting_dictionary[$index];
+			$term = $dictionary[$index];
 		}
 		if (empty($term) and !is_numeric($term)) { // not '0'
 			return $this->_expand($preg_groups['globalinverted_section_block'],$this->_dictionary);
@@ -491,7 +493,8 @@ class Generator
 	protected function _process_unescaped_globalvar($preg_groups)
 	{
 		$index = $preg_groups['unescaped_globalvar_index'];
-		$term = isset($this->_starting_dictionary[$index])? $this->_starting_dictionary[$index]: '';
+		$dictionary = $this->_starting_dictionary;
+		$term = isset($dictionary[$index])? $dictionary[$index]: '';
 		// defensive filter
 		if (is_array($term))
 			return htmlspecialchars(var_export($term, TRUE));
@@ -501,7 +504,8 @@ class Generator
 	protected function _process_globalvar($preg_groups)
 	{
 		$index = $preg_groups['globalvar_index'];
-		$term = isset($this->_starting_dictionary[$index])? $this->_starting_dictionary[$index]: '';
+		$dictionary = $this->_starting_dictionary;
+		$term = isset($dictionary[$index])? $dictionary[$index]: '';
 		// defensive filter
 		if (is_array($term))
 			return htmlspecialchars(var_export($term, TRUE));
