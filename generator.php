@@ -161,7 +161,7 @@ class Generator
 	{
 		if ($this->_starting_template and $this->_starting_dictionary)
 			return $this->_expand($this->_starting_template,$this->_starting_dictionary);
-		return '';
+		return $this->_starting_template;
 	}
 	// alias of expand
 	public function render()
